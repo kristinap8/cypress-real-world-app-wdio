@@ -14,7 +14,9 @@ export const config = {
     maxInstances: 1,
 
     capabilities: [{
-        browserName: 'MicrosoftEdge',
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: ['--headless']},
         acceptInsecureCerts: true
     }],
 
@@ -30,7 +32,7 @@ export const config = {
 
     connectionRetryCount: 3,
 
-    services: ['edgedriver'],
+    services: ['geckodriver'],
 
     framework: 'mocha',
 

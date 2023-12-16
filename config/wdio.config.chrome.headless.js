@@ -14,7 +14,9 @@ export const config = {
     maxInstances: 1,
 
     capabilities: [{
-        browserName: 'firefox',
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: ['--headless']},
         acceptInsecureCerts: true
     }],
 
@@ -30,7 +32,7 @@ export const config = {
 
     connectionRetryCount: 3,
 
-    services: ['geckodriver'],
+    services: ['chromedriver'],
 
     framework: 'mocha',
 

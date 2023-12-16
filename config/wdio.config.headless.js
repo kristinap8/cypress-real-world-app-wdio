@@ -14,9 +14,9 @@ export const config = {
     maxInstances: 1,
 
     capabilities: [{
-        browserName: 'chrome',
-        // 'goog:chromeOptions': {
-        //     args: ['--headless']},
+        browserName: 'MicrosoftEdge',
+        'ms:edgeOptions': {
+            args: ['--headless']},
         acceptInsecureCerts: true
     }],
 
@@ -32,7 +32,7 @@ export const config = {
 
     connectionRetryCount: 3,
 
-    services: ['chromedriver'],
+    services: ['edgedriver'],
 
     framework: 'mocha',
 
