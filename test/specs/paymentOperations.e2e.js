@@ -19,21 +19,21 @@ let balanceBefore;
 describe("Payment transaction operations check", async () => {
     before(async () => {
         await loginPage.openPage();
-        await loginPage.login(user.username, user.password); 
+        await loginPage.login(user.username, user.password);
 
         balanceBefore = await sideMenu.getBalance();
-        
+
         await navBarPage.clickNewTransactionBtn();
 
         contactFullName = await selectContactPage.getContactFullName(contactInd);
         contactUsername = await selectContactPage.getContactUsername(contactInd);
         await selectContactPage.clickContactItem(contactInd);
-        
+
         await paymentPage.fillPaymentForm(transactionData);
         await paymentPage.clickPayBtn();
     })
 
-    it('Verify sending a payment', async () => {    
+    it('Verify sending a payment', async () => {
         await expect(await completePaymentPage.getAlertMsg()).toHaveText('Transaction Submitted!');
         await expect(await completePaymentPage.getPaymentReceiverFullName()).toHaveText(contactFullName);
         await expect(await completePaymentPage.getSuccessMsg()).toHaveText("Paid $" + transactionData.amount + ".00 for " + transactionData.note);

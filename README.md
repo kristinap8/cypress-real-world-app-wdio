@@ -14,6 +14,7 @@ This repository contains automated test cases for  implemented using WebDriverIO
 ## Requirements
 
 - Node.js: Ensure you have Node.js installed.
+- Java 8 or higher.
 - Other dependencies: Check the `package.json` file for additional dependencies.
 
 ## Steps to Install

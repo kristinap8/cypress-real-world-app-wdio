@@ -7,7 +7,7 @@ const saveBtn = '*[data-test="bankaccount-submit"]';
 
 class CreateBankAccountPage extends Page {
     async createBankAccount(bankAccountData) {
-        const {bankName, routingNumber, accountNumber} = bankAccountData;
+        const { bankName, routingNumber, accountNumber } = bankAccountData;
         await super.fillElement(bankNameInput, bankName);
         await super.fillElement(routingNumberInput, routingNumber);
         await super.fillElement(accountNumberInput, accountNumber);

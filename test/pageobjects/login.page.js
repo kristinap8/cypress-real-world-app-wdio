@@ -7,7 +7,7 @@ const signInBtn = "button[data-test='signin-submit']";
 const errorMsg = "*[class='MuiAlert-message']";
 
 class LoginPage extends Page {
-    
+
     async openPage() {
         await super.openUrl(url);
     }

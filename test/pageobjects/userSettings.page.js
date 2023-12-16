@@ -7,10 +7,10 @@ const lastNameInput = '#user-settings-lastName-input';
 const lastNameFieldBorder = '#user-settings-lastName-input ~ fieldset';
 const lastNameErrorMsg = '#user-settings-lastName-input-helper-text';
 const emailInput = '#user-settings-email-input';
-const emailFieldBorder ='#user-settings-email-input ~ fieldset';
+const emailFieldBorder = '#user-settings-email-input ~ fieldset';
 const emailErrorMsg = '#user-settings-email-input-helper-text';
 const phoneNumberInput = '#user-settings-phoneNumber-input';
-const phoneNumberFieldBorder ='#user-settings-phoneNumber-input ~ fieldset';
+const phoneNumberFieldBorder = '#user-settings-phoneNumber-input ~ fieldset';
 const phoneNumberErrorMsg = '#user-settings-phoneNumber-input-helper-text';
 const saveBtn = "button[data-test='user-settings-submit']";
 

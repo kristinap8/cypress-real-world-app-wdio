@@ -12,9 +12,9 @@ describe("Transactions filtering check", async () => {
 
         await transactionsPage.openAmountFilterDropdown();
         await transactionsPage.selectAmountRange();
-        
+
         await transactionsPage.pause(200);
-        
+
         const amountBorders = await transactionsPage.getAmountRange();
         const amounts = await transactionsPage.getTransactionAmounts();
 

@@ -29,12 +29,12 @@ class RegistrationPage extends Page {
     }
 
     async fillRegistrationForm(registrationData) {
-        const {firstName, lastName, username, password, confirmPassword} = registrationData;
+        const { firstName, lastName, username, password, confirmPassword } = registrationData;
         await super.fillElement(firstNameInput, firstName);
         await super.fillElement(lastNameInput, lastName);
         await super.fillElement(usernameInput, username);
         await super.fillElement(passwordInput, password);
-        await super.fillElement(confirmPasswordInput, confirmPassword); 
+        await super.fillElement(confirmPasswordInput, confirmPassword);
     }
 
     async clickSignUpBtn() {

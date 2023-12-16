@@ -41,7 +41,7 @@ class Page {
     }
 
     async dragSlider(selector, x) {
-        await (await this.getElement(selector)).dragAndDrop({ x: x, y: 0});
+        await (await this.getElement(selector)).dragAndDrop({ x: x, y: 0 });
     }
 
     async getElementWidth(selector) {

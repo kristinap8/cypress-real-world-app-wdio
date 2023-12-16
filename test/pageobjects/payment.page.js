@@ -8,7 +8,7 @@ const requestBtn = '*[data-test="transaction-create-submit-request"]';
 class PaymentPage extends Page {
 
     async fillPaymentForm(transactionData) {
-        const {amount, note} = transactionData;
+        const { amount, note } = transactionData;
 
         await super.fillElement(amountInput, amount);
         await super.fillElement(noteInput, note);

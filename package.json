@@ -1,5 +1,6 @@
 {
-  "name": "wdio-task-7",
+  "name": "cypress-real-world-app-wdio",
+  "description": "Cypress-Real-World-App -- testing using WebDriverIO",
   "type": "module",
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
@@ -8,6 +9,7 @@
     "@wdio/local-runner": "^8.26.1",
     "@wdio/mocha-framework": "^8.24.12",
     "@wdio/spec-reporter": "^8.24.12",
+    "allure-commandline": "^2.25.0",
     "cross-env": "^7.0.3"
   },
   "scripts": {
@@ -16,5 +18,16 @@
     "wdio:edge": "cross-env ENV='dev' wdio run ./config/wdio.config.edge.js",
     "report": "allure open allure-report",
     "generate": "npx allure generate allure-results --clean"
+  },
+  "keywords": [
+    "wdio",
+    "cypress-real-world-app",
+    "automation",
+    "javascript",
+    "allure"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kristinap8/cypress-real-world-app-wdio.git"
   }
 }

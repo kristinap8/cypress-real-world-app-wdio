@@ -12,7 +12,7 @@ describe("Account settings update check", async () => {
 
     beforeEach(async () => {
         await loginPage.openPage();
-        await loginPage.login(user.username, user.password); 
+        await loginPage.login(user.username, user.password);
         await sideMenu.clickMyAccountMenuItem();
     })
 
@@ -27,7 +27,7 @@ describe("Account settings update check", async () => {
         await expect(await userSettingsPage.getLastNameInput()).toHaveValue(userSettingsData.lastName);
         await expect(await userSettingsPage.getEmailInput()).toHaveValue(userSettingsData.email);
         await expect(await userSettingsPage.getPhoneNumberInput()).toHaveValue(userSettingsData.phoneNumber);
-    
+
         await expect(await sideMenu.getUserFullNameMenuItem()).toHaveText(userSettingsData.firstName + " " + userSettingsData.lastName[0]);
     })
 
