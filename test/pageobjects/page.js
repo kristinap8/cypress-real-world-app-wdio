@@ -40,8 +40,21 @@ class Page {
         await (await this.getElement(selector)).click();
     }
 
+    async dragSlider(selector, x) {
+        await (await this.getElement(selector)).dragAndDrop({ x: x, y: 0});
+    }
+
+    async getElementWidth(selector) {
+        return (await (await this.getElement(selector)).getSize())["width"];
+    }
+
     async clickElementByIndex(selector, index) {
         await (await this.getElementByIndex(selector, index)).click();
+    }
+
+    async clickElementByKey(selector, key) {
+        await this.clickElement(selector);
+        await browser.keys(key);
     }
 
     async fillElement(selector, value) {

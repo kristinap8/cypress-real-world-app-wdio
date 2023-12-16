@@ -1,30 +1,27 @@
-// import loginPage from '../pageobjects/login.page.js';
-// import sideMenu from '../pageobjects/sideMenu.page.js';
-// import { generateRandomNumber, generateRandomUsername } from '../helper/generator.js';
-// import usersData from '../fixtures/users.json' assert {type: "json"};
+import loginPage from '../pageobjects/login.page.js';
+import sideMenu from '../pageobjects/sideMenu.page.js';
+import { generateRandomNumber, generateRandomUsername } from '../helper/generator.js';
+import usersData from '../fixtures/users.json' assert {type: "json"};
 
-// const user = usersData[generateRandomNumber(0, usersData.length - 1)];
-// const randomUsername = generateRandomUsername();
+const user = usersData[generateRandomNumber(0, usersData.length - 1)];
+const randomUsername = generateRandomUsername();
 
-// describe('Login functionality check', async () => {
+describe('Login functionality check', async () => {
 
-//     beforeEach(async () => {
-//         await loginPage.openPage();
-//     })
+    beforeEach(async () => {
+        await loginPage.openPage();
+    })
 
-//     it.skip('Login with valid credentials', async () => {
-//         await loginPage.login(user.username, user.password);
+    it('Login with valid credentials', async () => {
+        await loginPage.login(user.username, user.password);
 
-//         await expect(browser).toHaveUrl(await loginPage.getBaseUrl());
-//     })
+        await expect(browser).toHaveUrl(await loginPage.getBaseUrl());
+        await sideMenu.clickLogoutMenuItem();
+    })
 
-//     it.skip('Login with non-existing username', async () => {
-//         await loginPage.login(randomUsername, user.password);
+    it('Login with non-existing username', async () => {
+        await loginPage.login(randomUsername, user.password);
 
-//         await expect(await loginPage.getErrorMsg()).toHaveText('Username or password is invalid');
-//     })
-
-//     afterEach(async () => {
-//         await sideMenu.clickLogoutMenuItem();
-//     })
-// })
+        await expect(await loginPage.getErrorMsg()).toHaveText('Username or password is invalid');
+    })
+})

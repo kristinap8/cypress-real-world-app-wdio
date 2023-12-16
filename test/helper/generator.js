@@ -59,3 +59,7 @@ export function generateTransactionData() {
         note
     };
 }
+
+export function generateComment() {
+    return faker.lorem.sentence({ min: 1, max: 5 });
+}

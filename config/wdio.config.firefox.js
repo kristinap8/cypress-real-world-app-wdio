@@ -1,4 +1,4 @@
-import env from './environments/env.js';
+import env from '../environments/env.js';
 
 export const config = {
     //
@@ -24,7 +24,7 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        '../test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
