@@ -16,7 +16,7 @@ describe("Transaction social interactions check", async () => {
     })
 
     it("Like a transaction", async () => {
-        await transactionsPage.clickRandomTransaction();
+        await transactionsPage.clickLastTransaction();
         const likesCountBefore = await transactionDetailPage.getLikesCount();
         await transactionDetailPage.clickThumbsUpBtn();
         await expect(await transactionDetailPage.getThumbsUpBtn()).toBeDisabled();

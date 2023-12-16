@@ -10,7 +10,12 @@
     "@wdio/mocha-framework": "^8.24.12",
     "@wdio/spec-reporter": "^8.24.12",
     "allure-commandline": "^2.25.0",
-    "cross-env": "^7.0.3"
+    "chromedriver": "^120.0.0",
+    "cross-env": "^7.0.3",
+    "geckodriver": "^4.3.0",
+    "wdio-chromedriver-service": "^8.1.1",
+    "wdio-edgedriver-service": "^3.0.3",
+    "wdio-geckodriver-service": "^5.0.2"
   },
   "scripts": {
     "wdio:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.js",
@@ -29,5 +34,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/kristinap8/cypress-real-world-app-wdio.git"
+  },
+  "dependencies": {
+    "edgedriver": "^5.3.9"
   }
 }
