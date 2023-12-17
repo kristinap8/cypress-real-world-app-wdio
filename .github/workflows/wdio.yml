@@ -17,21 +17,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.16.1
-  start-website:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Checkout Website Repository
         uses: actions/checkout@v4
         with:
           repository: cypress-io/cypress-realworld-app
-          path: cypress-realworld-app
+          path: ./cypress-realworld-app
 
       - name: Start Locally Website
         run: |
           cd cypress-realworld-app
           npm install yarn@latest -g 
-          yarn
+          yarn install
           yarn dev
         timeout-minutes: 3
 
