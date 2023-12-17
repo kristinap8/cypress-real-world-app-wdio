@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 18.16.1
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Checkout Website Repository
         uses: actions/checkout@v4
         with:
@@ -31,9 +34,6 @@ jobs:
           yarn install
           yarn dev
         timeout-minutes: 3
-
-      - name: Install Dependencies
-        run: npm install
 
       - name: Run Tests
         run: npm run wdio:e2e:run:chrome
