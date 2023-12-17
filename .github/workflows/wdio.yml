@@ -44,7 +44,9 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: npm run wdio:e2e:run:chrome
+        run: |
+          npm run wdio:run:chrome
+          npm run report:chrome
         continue-on-error: true
 
       - name: Deploy report to Github Pages

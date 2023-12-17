@@ -41,7 +41,7 @@ export const config = {
         {
             outputDir: 'reports/allure-results/chrome',
             disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: false,
+            disableWebdriverScreenshotsReporting: true,
             testFailureIgnore: true
         }]],
 
