@@ -23,11 +23,8 @@ jobs:
           cd main
           npm install
 
-      - name: Checkout Website Repository
-        uses: actions/checkout@v4
-        with:
-          repository: cypress-io/cypress-realworld-app
-          path: ./cypress-realworld-app
+      - name: Clone Website Repository
+        run: git clone https://github.com/cypress-io/cypress-realworld-app.git
 
       - name: Start Locally Website
         run: |
