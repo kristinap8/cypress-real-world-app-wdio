@@ -19,7 +19,9 @@ jobs:
           node-version: 18.16.1
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd main
+          npm install
 
       - name: Checkout Website Repository
         uses: actions/checkout@v4
