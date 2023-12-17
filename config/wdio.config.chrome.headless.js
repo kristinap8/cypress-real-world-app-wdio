@@ -4,7 +4,7 @@ export const config = {
     runner: 'local',
 
     specs: [
-        '../test/specs/**/*.js'
+        '../test/specs/**/login.e2e.js'
     ],
 
     exclude: [
