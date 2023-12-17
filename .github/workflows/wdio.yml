@@ -37,7 +37,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests
+      - name: Create Directory For Results
+        run: |
+          mkdir -p reports/
+      
+
+      - name: Run Tests and Generate Reporta
         run: npm run wdio:run:chrome && npm run report:chrome
         continue-on-error: true
 
