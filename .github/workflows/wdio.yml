@@ -31,7 +31,7 @@ jobs:
         run: |
           yarn install
           yarn dev &
-          sleep 15
+          sleep 30
 
   test-chrome:
     needs: setup
