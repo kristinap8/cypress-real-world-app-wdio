@@ -30,10 +30,7 @@ jobs:
           cd cypress-realworld-app
           yarn install
           yarn dev
-  test:
-    needs: start-website
-    runs-on: ubuntu-latest
-    steps: 
+
       - name: Install Dependencies
         run: npm install
 
