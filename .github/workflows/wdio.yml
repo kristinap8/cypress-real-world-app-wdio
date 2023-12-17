@@ -7,8 +7,11 @@ on:
     branches: [main, master]
 
 jobs:
-  setup:
+  run-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-job: [chrome, firefox, edge]
 
     steps:
       - name: Set Up Node.js
@@ -31,13 +34,8 @@ jobs:
         run: |
           yarn install
           yarn dev &
-          sleep 30
+          sleep 15
 
-  test-chrome:
-    needs: setup
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -45,75 +43,18 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: npm run wdio:run:chrome
+        run: npm run wdio:run:${{ matrix.test-job }}
         continue-on-error: true
 
-      - name: Generate Allure Report for Chrome
+      - name: Generate Allure Report
         if: always()
-        run: npm run report:generate:chrome
+        run: npm run report:generate:${{ matrix.test-job }}
 
-      - name: Deploy Report to Github Pages for Chrome
+      - name: Deploy Report to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: reports/allure-reports/chrome
-          destination_dir: chrome
-
-  test-firefox:
-    needs: [setup, test-chrome]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Tests
-        run: npm run wdio:run:firefox
-        continue-on-error: true
-
-      - name: Generate Allure Report for Firefox
-        if: always()
-        run: npm run report:generate:firefox
-
-      - name: Deploy Report to Github Pages for Firefox
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: reports/allure-reports/firefox
-          destination_dir: firefox
-
-  test-edge:
-    needs: [setup, test-chrome, test-firefox]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Tests
-        run: npm run wdio:run:edge
-        continue-on-error: true
-
-      - name: Generate Allure Report for Edge
-        if: always()
-        run: npm run report:generate:edge
-
-      - name: Deploy Report to Github Pages for Edge
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: reports/allure-reports/edge
-          destination_dir: edge
-          
+          publish_dir: reports/allure-reports/${{ matrix.test-job }}
+          destination_dir: ${{ matrix.test-job }}
