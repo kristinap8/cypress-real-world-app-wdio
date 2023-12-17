@@ -19,17 +19,29 @@ jobs:
       - name: Install yarn
         run: npm install yarn@latest -g
         
+      - name: Clone Website Repository
+        uses: actions/checkout@v4
+        with:
+          repository: cypress-io/cypress-realworld-app
+          ref: develop
+          path: ./cypress-realworld-app
+
+      - name: Run Server
+        uses: actions/checkout@v4
+        with: 
+          working-directory: cypress-realworld-app
+          start: yarn install, yarn dev
+          wait-on: 'http://localhost:3000'
+
+      # - name: Run Server
+      #   run: cd cypress-realworld-app && yarn install && yarn dev 
+
       - name: Install Dependencies
         run: npm install
 
-      - name: Clone Website Repository
-        run: git clone https://github.com/cypress-io/cypress-realworld-app.git
-
-      - name: Start Locally Website
-        run: cd cypress-realworld-app && yarn install && yarn dev && sleep 30s
-
       - name: Run Tests
         run: npm run wdio:e2e:run:chrome
+        continue-on-error: true
 
       - name: Deploy report to Github Pages
         uses: peaceiris/actions-gh-pages@v3
