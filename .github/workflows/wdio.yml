@@ -28,24 +28,19 @@ jobs:
           path: ./cypress-realworld-app
 
       - name: Run Server
-        uses: actions/checkout@v4
-        with: 
-           working-directory: ./cypress-realworld-app
-           start: yarn install, yarn dev
-           wait-on: 'http://localhost:3000'
-        # working-directory: ./cypress-realworld-app
-        # run: |
-        #   yarn install
-        #   yarn dev &
-        #   sleep 10
+        working-directory: ./cypress-realworld-app
+        run: |
+          yarn install
+          yarn dev &
+          sleep 15
 
       - name: Install Dependencies
         run: npm install
 
-    #  - name: Create Directory For Results
-        # run: |
-        #   mkdir -p reports/allure-reports/chrome
-
+  test-chrome:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Tests
         run: npm run wdio:run:chrome
 
@@ -58,93 +53,43 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          publish_branch: gh-pages-chrome
           publish_dir: reports/allure-reports/chrome
 
+  test-firefox:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests
+        run: npm run wdio:run:firefox
 
-# name: Run WDIO Tests and Upload Allure Reports for Cypress Real World App
-# on:
-#   push:
-#     branches: [main, master]
-#   pull_request:
-#     branches: [main, master]
-# jobs:
-#   setup:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v4
+      - name: Generate Allure Report
+        if: always()
+        run: npm run report:generate:firefox
 
-#       - name: Set Up Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 18.16.1
-
-#       - name: Install yarn
-#         run: npm install yarn@latest -g
-
-#       - name: Clone Website Repository
-#         uses: actions/checkout@v4
-#         with:
-#           repository: cypress-io/cypress-realworld-app
-#           ref: develop
-#           path: ./cypress-realworld-app
-
-#       - name: Run Server
-#         working-directory: ./cypress-realworld-app
-#         run: |
-#          yarn install
-#          yarn dev & sleep 10
-#         # uses: actions/checkout@v4
-#         # with:
-#         #   working-directory: cypress-realworld-app
-#         #   start: yarn install, yarn dev
-#         #   wait-on: 'http://localhost:3000'
-
-#       # - name: Run Server
-#       #   run: cd cypress-realworld-app && yarn install && yarn dev
-
-#       - name: Install Dependencies
-#         run: npm install
-
-#       - name: Run Tests
-#         run: |
-#           npm run wdio:run:chrome
-#           npm run report:chrome
-#         continue-on-error: true
-
-#       - name: Deploy report to Github Pages
-#         uses: peaceiris/actions-gh-pages@v3
-#         with:
-#           github_token:
-#           publish_branch: gh-pages
-#           publish_dir: reports/allure-reports/chrome
-# start-website:
-#   needs: setup
-#   runs-on: ubuntu-latest
-#   steps:
-#     - name: Checkout Website Repository
-#       uses: actions/checkout@v2
-#       with:
-#         repository: owner/website-repo
-#         path: website  # Specify the path to store the cloned repository
-
-#     - name: Start Local Website
-#       run: |
-#         cd website
-#         npm install
-#         yarn dev  # Assuming this is the command to start your local website
-# test:
-#   runs-on: ubuntu-latest
-
-#   steps:
-#     - name: Checkout Repository
-#       uses: actions/checkout@v4
-
-#     - name: Install Node
-#       uses: actions/setup-node@v4
-#       with:
-#         node-version: 18.16.1
-
-#     - name: Install Dependencies
-#       run: npm install
+      - name: Deploy report to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-firefox
+          publish_dir: reports/allure-reports/firefox
+          
+  test-edge:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests
+        run: npm run wdio:run:edge
+        
+      - name: Generate Allure Report
+        if: always()
+        run: npm run report:generate:edge
+        
+      - name: Deploy report to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-edge
+          publish_dir: reports/allure-reports/edge
