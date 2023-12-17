@@ -1,16 +1,77 @@
-name: WDIO tests
+name: Run WDIO Tests and Upload Allure Reports for Cypress Real World App
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 jobs:
-  wdio-run:
+  setup:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-    - name: Install dependencies
-      run: npm ci
-    - name: Run WDIO test chrome
-      run: npm run wdio:chrome
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.16.1
+  start-website:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Website Repository
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/cypress-io/cypress-realworld-app.git
+          path: ./cypress-realworld-app
+
+      - name: Start Locally Website
+        run: |
+          cd cypress-realworld-app
+          yarn install
+          yarn dev
+  test:
+    needs: start-website
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run wdio:e2e:run:chrome
+
+      - name: Deploy report to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: reports/allure-reports/chrome
+  # start-website:
+  #   needs: setup
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Website Repository
+  #       uses: actions/checkout@v2
+  #       with:
+  #         repository: owner/website-repo
+  #         path: website  # Specify the path to store the cloned repository
+
+  #     - name: Start Local Website
+  #       run: |
+  #         cd website
+  #         npm install
+  #         yarn dev  # Assuming this is the command to start your local website
+  # test:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Install Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 18.16.1
+
+  #     - name: Install Dependencies
+  #       run: npm install
