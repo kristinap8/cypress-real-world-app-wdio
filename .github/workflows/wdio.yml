@@ -4,6 +4,7 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -29,24 +30,15 @@ jobs:
       - name: Run Server
         working-directory: ./cypress-realworld-app
         run: |
-         yarn install
-         yarn dev & sleep 10
-        # uses: actions/checkout@v4
-        # with: 
-        #   working-directory: cypress-realworld-app
-        #   start: yarn install, yarn dev
-        #   wait-on: 'http://localhost:3000'
-
-      # - name: Run Server
-      #   run: cd cypress-realworld-app && yarn install && yarn dev 
+          yarn install
+          yarn dev &
+          sleep 10
 
       - name: Install Dependencies
         run: npm install
 
       - name: Run Tests
-        run: |
-          npm run wdio:run:chrome
-          npm run report:chrome
+        run: npm run wdio:run:chrome && npm run report:chrome
         continue-on-error: true
 
       - name: Deploy report to Github Pages
@@ -55,6 +47,64 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: reports/allure-reports/chrome
+
+# name: Run WDIO Tests and Upload Allure Reports for Cypress Real World App
+# on:
+#   push:
+#     branches: [main, master]
+#   pull_request:
+#     branches: [main, master]
+# jobs:
+#   setup:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
+
+#       - name: Set Up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18.16.1
+
+#       - name: Install yarn
+#         run: npm install yarn@latest -g
+        
+#       - name: Clone Website Repository
+#         uses: actions/checkout@v4
+#         with:
+#           repository: cypress-io/cypress-realworld-app
+#           ref: develop
+#           path: ./cypress-realworld-app
+
+#       - name: Run Server
+#         working-directory: ./cypress-realworld-app
+#         run: |
+#          yarn install
+#          yarn dev & sleep 10
+#         # uses: actions/checkout@v4
+#         # with: 
+#         #   working-directory: cypress-realworld-app
+#         #   start: yarn install, yarn dev
+#         #   wait-on: 'http://localhost:3000'
+
+#       # - name: Run Server
+#       #   run: cd cypress-realworld-app && yarn install && yarn dev 
+
+#       - name: Install Dependencies
+#         run: npm install
+
+#       - name: Run Tests
+#         run: |
+#           npm run wdio:run:chrome
+#           npm run report:chrome
+#         continue-on-error: true
+
+#       - name: Deploy report to Github Pages
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_branch: gh-pages
+#           publish_dir: reports/allure-reports/chrome
   # start-website:
   #   needs: setup
   #   runs-on: ubuntu-latest
