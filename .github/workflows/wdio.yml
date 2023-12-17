@@ -31,7 +31,7 @@ jobs:
           cd cypress-realworld-app
           npm install yarn@latest -g 
           yarn install
-          yarn dev
+          yarn dev & sleep 20 && curl http://localhost:3000
         timeout-minutes: 3
 
       - name: Run Tests
