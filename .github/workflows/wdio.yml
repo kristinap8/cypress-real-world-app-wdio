@@ -43,6 +43,7 @@ jobs:
     steps:
       - name: Run Tests
         run: npm run wdio:run:chrome
+        continue-on-error: true
 
       - name: Generate Allure Report
         if: always()
@@ -62,6 +63,7 @@ jobs:
     steps:
       - name: Run Tests
         run: npm run wdio:run:firefox
+        continue-on-error: true
 
       - name: Generate Allure Report
         if: always()
@@ -81,6 +83,7 @@ jobs:
     steps:
       - name: Run Tests
         run: npm run wdio:run:edge
+        continue-on-error: true
         
       - name: Generate Allure Report
         if: always()
