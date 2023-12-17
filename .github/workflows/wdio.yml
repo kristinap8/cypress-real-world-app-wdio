@@ -22,7 +22,7 @@ jobs:
       - name: Checkout Website Repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/cypress-io/cypress-realworld-app.git
+          repository: cypress-io/cypress-realworld-app.git
           path: ./cypress-realworld-app
 
       - name: Start Locally Website
