@@ -42,9 +42,11 @@ jobs:
           mkdir -p reports/allure-reports/chrome
       
 
-      - name: Run Tests and Generate Reporta
+      - name: Run Tests and Generate Reports
         if: always()
-        run: npm run wdio:run:chrome && npm run report:generate:chrome
+        run: |
+          npm run wdio:run:chrome
+          npm run report:generate:chrome
         continue-on-error: true
 
       - name: Deploy report to Github Pages
@@ -109,7 +111,7 @@ jobs:
 #       - name: Deploy report to Github Pages
 #         uses: peaceiris/actions-gh-pages@v3
 #         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           github_token:
 #           publish_branch: gh-pages
 #           publish_dir: reports/allure-reports/chrome
   # start-website:
