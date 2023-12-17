@@ -43,6 +43,7 @@ jobs:
       
 
       - name: Run Tests and Generate Reporta
+        if: always()
         run: npm run wdio:run:chrome && npm run report:generate:chrome
         continue-on-error: true
 
