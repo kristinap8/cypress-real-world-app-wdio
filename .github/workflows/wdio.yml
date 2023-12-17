@@ -27,11 +27,15 @@ jobs:
           path: ./cypress-realworld-app
 
       - name: Run Server
-        uses: actions/checkout@v4
-        with: 
-          working-directory: cypress-realworld-app
-          start: yarn install, yarn dev
-          wait-on: 'http://localhost:3000'
+        working-directory: ./cypress-realworld-app
+        run: |
+         yarn install
+         yarn dev & sleep 10
+        # uses: actions/checkout@v4
+        # with: 
+        #   working-directory: cypress-realworld-app
+        #   start: yarn install, yarn dev
+        #   wait-on: 'http://localhost:3000'
 
       # - name: Run Server
       #   run: cd cypress-realworld-app && yarn install && yarn dev 
