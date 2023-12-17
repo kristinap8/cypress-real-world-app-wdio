@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        
       - name: Set Up Node.js
         uses: actions/setup-node@v4
         with:
@@ -65,7 +62,7 @@ jobs:
           destination_dir: chrome
 
   test-firefox:
-    needs: setup
+    needs: [setup, test-chrome]
     runs-on: ubuntu-latest
 
     steps:
@@ -93,7 +90,7 @@ jobs:
           destination_dir: firefox
 
   test-edge:
-    needs: setup
+    needs: [setup, test-chrome, test-firefox]
     runs-on: ubuntu-latest
 
     steps:
