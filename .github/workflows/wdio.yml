@@ -30,7 +30,7 @@ jobs:
       - name: Start Locally Website
         run: |
           cd cypress-realworld-app
-          yarn install
+          npm install yarn@latest -g
           yarn dev 
 
       - name: Install Dependencies
