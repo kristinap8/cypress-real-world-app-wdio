@@ -29,7 +29,8 @@ jobs:
         run: |
           cd cypress-realworld-app
           yarn install
-          yarn dev
+          yarn dev &
+          background: true
 
       - name: Install Dependencies
         run: npm install
