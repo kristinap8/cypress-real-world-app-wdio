@@ -17,20 +17,16 @@ jobs:
           node-version: 18.16.1
 
       - name: Install Dependencies
-        run: |
-          cd main
-          npm install
+        run: npm install
 
       - name: Clone Website Repository
         run: git clone https://github.com/cypress-io/cypress-realworld-app.git
 
       - name: Start Locally Website
-        run: |
-          cd cypress-realworld-app
-          npm install yarn@latest -g 
-          yarn install
-          yarn dev 
-        timeout-minutes: 3
+        uses: cypress-io/github-action@v6
+        with: 
+          start: cd cypress-realworld-app, npm install yarn@latest -g, yarn install, yarn dev 
+          wait-on: 'http://localhost:3000'
 
       - name: Run Tests
         run: npm run wdio:e2e:run:chrome
