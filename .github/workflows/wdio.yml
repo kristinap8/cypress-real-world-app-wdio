@@ -24,8 +24,9 @@ jobs:
 
       - name: Start Locally Website
         uses: cypress-io/github-action@v6
-        with: 
-          start: cd cypress-realworld-app && npm install yarn@latest -g && yarn install && yarn dev 
+        with:
+          working-directory: cypress-realworld-app
+          start: npm install yarn@latest -g && yarn install && yarn dev 
           wait-on: 'http://localhost:3000'
 
       - name: Run Tests
