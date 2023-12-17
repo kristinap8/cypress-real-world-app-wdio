@@ -58,8 +58,9 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages-chrome
+          publish_branch: gh-pages
           publish_dir: reports/allure-reports/chrome
+          destination-dir: chrome
 
   test-firefox:
     needs: setup
@@ -85,8 +86,9 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages-firefox
+          publish_branch: gh-pages
           publish_dir: reports/allure-reports/firefox
+          destination-dir: firefox
 
   test-edge:
     needs: setup
@@ -112,5 +114,6 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages-edge
+          publish_branch: gh-pages
           publish_dir: reports/allure-reports/edge
+          destination-dir: edge
