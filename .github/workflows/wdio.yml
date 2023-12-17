@@ -39,7 +39,7 @@ jobs:
 
       - name: Create Directory For Results
         run: |
-          mkdir -p reports/
+          mkdir -p reports/allure-reports/chrome
       
 
       - name: Run Tests and Generate Reporta
