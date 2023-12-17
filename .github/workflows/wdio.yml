@@ -14,6 +14,9 @@ jobs:
         test-job: [chrome, firefox, edge]
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Set Up Node.js
         uses: actions/setup-node@v4
         with:
@@ -35,9 +38,6 @@ jobs:
           yarn install
           yarn dev &
           sleep 15
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: npm install
