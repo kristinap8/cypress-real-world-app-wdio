@@ -26,7 +26,7 @@ jobs:
         run: git clone https://github.com/cypress-io/cypress-realworld-app.git
 
       - name: Start Locally Website
-        uses: cypress-io/github-action@v6
+        uses: ./
         with:
           working-directory: cypress-realworld-app
           start: yarn install, yarn dev 
