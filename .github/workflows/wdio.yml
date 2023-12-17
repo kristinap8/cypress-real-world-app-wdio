@@ -43,11 +43,11 @@ jobs:
       
 
       - name: Run Tests and Generate Reports
+        run: npm run wdio:run:chrome
+
+      - name: Generate Allure Report
         if: always()
-        run: |
-          npm run wdio:run:chrome
-          npm run report:generate:chrome
-        continue-on-error: true
+        run: npm run report:generate:chrome
 
       - name: Deploy report to Github Pages
         uses: peaceiris/actions-gh-pages@v3
