@@ -60,7 +60,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: reports/allure-reports/chrome
-          destination-dir: chrome
+          destination_dir: chrome
 
   test-firefox:
     needs: setup
@@ -88,7 +88,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: reports/allure-reports/firefox
-          destination-dir: firefox
+          destination_dir: firefox
 
   test-edge:
     needs: setup
@@ -116,4 +116,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: reports/allure-reports/edge
-          destination-dir: edge
+          destination_dir: edge
+          
