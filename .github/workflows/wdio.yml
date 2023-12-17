@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: 18.16.1
 
+      - name: Install yarn
+        run: npm install yarn@latest -g
+        
       - name: Install Dependencies
         run: npm install
 
@@ -26,7 +29,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: cypress-realworld-app
-          start: npm install yarn@latest -g && yarn install && yarn dev 
+          start: yarn install, yarn dev 
           wait-on: 'http://localhost:3000'
 
       - name: Run Tests
