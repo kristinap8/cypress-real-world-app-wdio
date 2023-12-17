@@ -26,7 +26,7 @@ jobs:
         run: git clone https://github.com/cypress-io/cypress-realworld-app.git
 
       - name: Start Locally Website
-        run: yarn install && yarn dev && sleep 30s
+        run: cd cypress-realworld-app && yarn install && yarn dev && sleep 30s
 
       - name: Run Tests
         run: npm run wdio:e2e:run:chrome
