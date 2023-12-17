@@ -1,3 +1,0 @@
-{
-  "text": "Auto Loan Account"
-}

@@ -16,7 +16,8 @@ export const config = {
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['--headless']},
+            args: ['--headless']
+        },
         acceptInsecureCerts: true
     }],
 
@@ -36,7 +37,13 @@ export const config = {
 
     framework: 'mocha',
 
-    reporters: ['spec'],
+    reporters: ['spec', ['allure',
+        {
+            outputDir: 'reports/allure-results/chrome',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+            testFailureIgnore: true
+        }]],
 
     mochaOpts: {
         ui: 'bdd',

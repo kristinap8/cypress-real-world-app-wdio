@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "#user-settings-firstName-input ~ fieldset"
-}

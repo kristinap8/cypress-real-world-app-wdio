@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "*[data-test*='comment-list-item']:last-child"
-}

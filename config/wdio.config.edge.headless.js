@@ -36,7 +36,12 @@ export const config = {
 
     framework: 'mocha',
 
-    reporters: ['spec'],
+    reporters: ['spec', ['allure',
+    {
+        outputDir: 'reports/allure-results/edge',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false
+    }]],
 
     mochaOpts: {
         ui: 'bdd',

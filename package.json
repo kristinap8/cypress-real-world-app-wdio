@@ -12,17 +12,28 @@
     "allure-commandline": "^2.25.0",
     "chromedriver": "^120.0.0",
     "cross-env": "^7.0.3",
+    "edgedriver": "^5.3.9",
     "geckodriver": "^4.3.0",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-edgedriver-service": "^3.0.3",
     "wdio-geckodriver-service": "^5.0.2"
   },
   "scripts": {
-    "wdio:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.js",
-    "wdio:firefox": "cross-env ENV='dev' wdio run ./config/wdio.config.firefox.js",
-    "wdio:edge": "cross-env ENV='dev' wdio run ./config/wdio.config.edge.js",
-    "report": "allure open allure-report",
-    "generate": "npx allure generate allure-results --clean"
+    "wdio:e2e:run:chrome": "(npm run clear:chrome && npm run wdio:run:chrome || true) && npm run report:chrome",
+    "wdio:e2e:run:firefox": "(npm run clear:firefox && npm run wdio:run:firefox || true) && npm run report:firefox",
+    "wdio:e2e:run:edge": "(npm run clear:edge && npm run wdio:run:edge || true) && npm run report:edge",
+    "wdio:run:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.headless.js",
+    "wdio:run:firefox": "cross-env ENV='dev' wdio run ./config/wdio.config.firefox.headless.js",
+    "wdio:run:edge": "cross-env ENV='dev' wdio run ./config/wdio.config.edge.headless.js",
+    "report:chrome": "npx allure generate reports/allure-results/chrome --clean -o reports/allure-reports/chrome && allure open reports/allure-reports/chrome",
+    "report:firefox": "npx allure generate reports/allure-results/firefox --clean -o reports/allure-reports/firefox && allure open reports/allure-reports/firefox",
+    "report:edge": "npx allure generate reports/allure-results/edge --clean -o reports/allure-reports/edge && allure open reports/allure-reports/edge",
+    "clear:chrome": "rm -r reports/allure-reports/chrome || true",
+    "clear:firefox": "rm -r reports/allure-reports/firefox || true",
+    "clear:edge": "rm -r reports/allure-reports/edge || true",
+    "wdio:spec:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.headless.js --reporters spec --spec",
+    "wdio:spec:firefox": "cross-env ENV='dev' wdio ./config/wdio.config.firefox.headless.js --reporters spec --spec ",
+    "wdio:spec:edge": "cross-env ENV='dev' wdio ./config/wdio.config.edge.headless.js --reporters spec --spec"
   },
   "keywords": [
     "wdio",
@@ -34,8 +45,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/kristinap8/cypress-real-world-app-wdio.git"
-  },
-  "dependencies": {
-    "edgedriver": "^5.3.9"
   }
 }
