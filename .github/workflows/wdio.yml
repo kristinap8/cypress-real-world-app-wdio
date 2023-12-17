@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          path: main
 
       - name: Set Up Node.js
         uses: actions/setup-node@v4
@@ -20,17 +22,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Website Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: cypress-io/cypress-realworld-app
-          path: ./cypress-realworld-app
+          path: cypress-realworld-app
 
       - name: Start Locally Website
         run: |
           cd cypress-realworld-app
           yarn install
-          yarn dev &
-          background: true
+          yarn dev 
 
       - name: Install Dependencies
         run: npm install
