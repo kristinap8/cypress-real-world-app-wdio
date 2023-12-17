@@ -32,7 +32,8 @@ jobs:
           cd cypress-realworld-app
           npm install yarn@latest -g 
           yarn
-          yarn dev 
+          yarn dev
+        timeout-minutes: 3
 
       - name: Install Dependencies
         run: npm install
