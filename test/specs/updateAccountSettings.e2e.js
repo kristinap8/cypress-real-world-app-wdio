@@ -18,13 +18,10 @@ describe("Account settings update check", async () => {
 
     it("Update user settings", async () => {
         await userSettingsPage.clearUserSettingsForm();
-        await userSettingsPage.pause(1000);
         await userSettingsPage.fillUserSettingsForm(userSettingsData);
-        await userSettingsPage.pause(1000);
         await userSettingsPage.clickSaveBtn();
-        await userSettingsPage.pause(1000);
+        await userSettingsPage.pause(100);
         await userSettingsPage.reloadPage();
-        await userSettingsPage.pause(1000);
 
         await expect(await userSettingsPage.getFirstNameInput()).toHaveValue(userSettingsData.firstName);
         await expect(await userSettingsPage.getLastNameInput()).toHaveValue(userSettingsData.lastName);
@@ -36,7 +33,6 @@ describe("Account settings update check", async () => {
 
     it("Update user settings with blank values", async () => {
         await userSettingsPage.clearUserSettingsForm();
-        await userSettingsPage.pause(1000);
 
         await expect(isReddishColor(await userSettingsPage.getFirstNameInputBorderColor())).toBe(true);
         await expect(await userSettingsPage.getFirstNameErrorMsg()).toHaveText('Enter a first name');
