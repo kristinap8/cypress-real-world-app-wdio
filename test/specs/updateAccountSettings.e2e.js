@@ -19,6 +19,7 @@ describe("Account settings update check", async () => {
     it("Update user settings", async () => {
         await userSettingsPage.clearUserSettingsForm();
         await userSettingsPage.fillUserSettingsForm(userSettingsData);
+        await userSettingsPage.pause(100);
         await userSettingsPage.clickSaveBtn();
         await userSettingsPage.pause(100);
         await userSettingsPage.reloadPage();
