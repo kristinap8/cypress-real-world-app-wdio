@@ -33,6 +33,7 @@ describe("Account settings update check", async () => {
 
     it("Update user settings with blank values", async () => {
         await userSettingsPage.clearUserSettingsForm();
+        await userSettingsPage.pause(100);
 
         await expect(isReddishColor(await userSettingsPage.getFirstNameInputBorderColor())).toBe(true);
         await expect(await userSettingsPage.getFirstNameErrorMsg()).toHaveText('Enter a first name');
