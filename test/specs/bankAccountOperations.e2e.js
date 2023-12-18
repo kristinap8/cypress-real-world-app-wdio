@@ -19,6 +19,7 @@ describe("Bank account operations check", async () => {
     it("Create a bank account", async () => {
         await bankAccountsListPage.clickCreateBtn();
         await createBankAccountPage.createBankAccount(bankAccountData);
+        await bankAccountsListPage.pause(100);
         await expect(browser).toHaveUrl(await bankAccountsListPage.getPageUrl());
         await expect(await bankAccountsListPage.getLastBankName()).toHaveText(bankAccountData.bankName);
     })
