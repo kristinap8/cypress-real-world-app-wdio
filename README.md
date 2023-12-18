@@ -10,8 +10,9 @@
 
 ## Summary of Repo
 
-This repository contains automated tests for Cypress Real World App which are implemented using WeDriverIO. The web-site can be found [here](https://github.com/cypress-io/cypress-realworld-app). <br>
-The deployed to git hub pages allure reports can be found with the following links:
+This repository contains automated tests for Cypress Real World App implemented using WebDriverIO. The website can be found [here](https://github.com/cypress-io/cypress-realworld-app).<br>
+
+The deployed GitHub Pages allure reports can be found with the following links: 
 1. Allure report for tests run in [Chrome browser](https://kristinap8.github.io/cypress-real-world-app-wdio/chrome).
 2. Allure report for tests run in [Firefox browser](https://kristinap8.github.io/cypress-real-world-app-wdio/firefox).
 3. Allure report for tests run in [Microsoft Edge browser](https://kristinap8.github.io/cypress-real-world-app-wdio/edge).
