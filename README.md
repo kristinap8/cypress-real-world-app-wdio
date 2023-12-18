@@ -108,7 +108,7 @@ npm run report:generate:edge
 npm run report:open:<name-of-a-browser>
 ```
 
-5. Run All Tests for Different Browsers, Generate, and Open Allure Report:
+5. Run All Tests for Different Browsers, Generate and Open Allure Report:
 
 ```bash
 npm run wdio:e2e:run:<name-of-a-browser>
