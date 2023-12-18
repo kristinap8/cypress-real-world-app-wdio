@@ -62,10 +62,11 @@ class Page {
     }
 
     async clearElementValue(selector) {
-        await this.clickElement(selector);
-        await browser.keys(['Command', 'a']);
-        await this.pause(100);
-        await browser.keys('Back space');
+        const selectorValue = await (await this.getElement(selector)).getValue();
+        for (let index = 0; index < selectorValue.length; index++) {
+            await (await this.getElement(selector)).addValue('\uE003');
+            
+        }
     }
 
     async pause(milliseconds) {
