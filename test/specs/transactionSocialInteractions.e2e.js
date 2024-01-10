@@ -3,14 +3,15 @@ import sideMenu from '../pageobjects/sideMenu.page.js';
 import transactionsPage from '../pageobjects/transactions.page.js';
 import transactionDetailPage from '../pageobjects/transactionDetail.page.js';
 import { generateRandomNumber, generateComment } from '../helper/generator.js';
+import { makePayment } from '../helper/helper.js';
 import usersData from '../fixtures/users.json' assert {type: "json"};
 
-const user = usersData[generateRandomNumber(0, usersData.length - 1)];
+const user = usersData[generateRandomNumber(2, usersData.length - 1)];
 const randomComment = generateComment();
 
 describe("Transaction social interactions check", async () => {
     beforeEach(async () => {
-        await loginPage.openPage();
+        await makePayment(0, 1);
         await loginPage.login(user.username, user.password);
         await transactionsPage.pause(300);
     })
