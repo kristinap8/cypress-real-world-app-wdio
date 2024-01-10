@@ -53,11 +53,13 @@ describe('Request transaction operations check', async () => {
 
         await sideMenu.clickLogoutMenuItem();
         await loginPage.login(user.username, user.password);
-        await expect(await sideMenu.getBalance()).toEqual(((senderBalanceBefore + Number(transactionData.amount)) >= 0) ? Number((senderBalanceBefore + Number(transactionData.amount))) : 0);
+        const senderAmountDiff = Number((senderBalanceBefore + Number(transactionData.amount)).toFixed(2));
+        await expect(await sideMenu.getBalance()).toEqual(senderAmountDiff >= 0 ? senderAmountDiff: 0);
 
-        await sideMenu.clickLogoutMenuItem();
+        await sideMenu.clickLogoutMenuItem()
+        const receiverAmountDiff = Number((receiverBalanceBefore - Number(transactionData.amount)).toFixed(2));
         await loginPage.login(contactUsername, findPasswordByUsername(usersData, contactUsername));
-        await expect(await sideMenu.getBalance()).toEqual(((receiverBalanceBefore - Number(transactionData.amount)) >= 0) ? Number((receiverBalanceBefore - Number(transactionData.amount))) : 0);
+        await expect(await sideMenu.getBalance()).toEqual(receiverAmountDiff >= 0 ? receiverAmountDiff : 0);
     })
 
     it("Verify balance after rejecting request", async () => {
