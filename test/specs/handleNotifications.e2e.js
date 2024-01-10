@@ -2,15 +2,15 @@ import loginPage from "../pageobjects/login.page.js";
 import sideMenu from '../pageobjects/sideMenu.page.js';
 import notificationsPage from "../pageobjects/notifications.page.js";
 import navBarPage from "../pageobjects/navBar.page.js";
-import { generateRandomNumber } from "../helper/generator.js";
+import { makePayment } from "../helper/helper.js";
 import usersData from '../fixtures/users.json' assert {type: "json"};
 
-const user = usersData[generateRandomNumber(0, usersData.length - 1)];
+const user = usersData[1];
 
 describe("Notifications handling check", async () => {
 
     beforeEach(async () => {
-        await loginPage.openPage();
+        await makePayment(0, 1);
         await loginPage.login(user.username, user.password);
         await sideMenu.clickNotificationsMenuItem();
     })
