@@ -19,9 +19,9 @@
     "wdio-geckodriver-service": "^5.0.2"
   },
   "scripts": {
-    "wdio:e2e:run:chrome": "(npm run clear:chrome && npm run wdio:run:chrome || true) && npm run report:chrome && npm run report:open:chrome",
-    "wdio:e2e:run:firefox": "(npm run clear:firefox && npm run wdio:run:firefox || true) && npm run report:firefox && npm run report:open:firefox",
-    "wdio:e2e:run:edge": "(npm run clear:edge && npm run wdio:run:edge || true) && npm run report:edge && npm run report:open:edge",
+    "wdio:e2e:run:chrome": "(npm run clear:chrome && npm run wdio:run:chrome || true) && npm run report:generate:chrome && npm run report:open:chrome",
+    "wdio:e2e:run:firefox": "(npm run clear:firefox && npm run wdio:run:firefox || true) && npm run report:generate:firefox && npm run report:open:firefox",
+    "wdio:e2e:run:edge": "(npm run clear:edge && npm run wdio:run:edge || true) && npm run report:generate:edge && npm run report:open:edge",
     "wdio:run:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.headless.js",
     "wdio:run:firefox": "cross-env ENV='dev' wdio run ./config/wdio.config.firefox.headless.js",
     "wdio:run:edge": "cross-env ENV='dev' wdio run ./config/wdio.config.edge.headless.js",
