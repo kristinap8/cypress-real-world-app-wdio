@@ -5,6 +5,7 @@ import paymentPage from "../pageobjects/payment.page.js";
 import sideMenu from '../pageobjects/sideMenu.page.js';
 import { generateTransactionData } from "./generator.js";
 import usersData from '../fixtures/users.json' assert {type: "json"};
+import transactionsPage from "../pageobjects/transactions.page.js";
 
 export function isReddishColor(rgba) {
     const rgbaColor = rgba.match(/\d+/g).map(Number);
@@ -14,7 +15,8 @@ export function isReddishColor(rgba) {
 export async function makePayment(payerInd, receiverInd) {
     await loginPage.openPage();
     await loginPage.login(usersData[payerInd].username, usersData[payerInd].password);
-
+    
+    await transactionsPage.waitForTransactionsList();
     await navBarPage.clickNewTransactionBtn();
     await selectContactPage.clickContactItem(receiverInd - 1);
 

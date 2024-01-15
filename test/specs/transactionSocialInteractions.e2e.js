@@ -13,7 +13,7 @@ describe("Transaction social interactions check", async () => {
     beforeEach(async () => {
         await makePayment(0, 1);
         await loginPage.login(user.username, user.password);
-        await transactionsPage.pause(300);
+        await transactionsPage.waitForTransactionsList();
     })
 
     it("Like a transaction", async () => {

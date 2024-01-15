@@ -1,6 +1,7 @@
 import Page from './page.js';
 import { generateRandomNumber } from '../helper/generator.js';
 
+const notificationsList = "*[data-test='notifications-list']";
 const notificationItems = "*[data-test*='notification-list-item']";
 const dismissBtns = "button[data-test*='notification-mark-read']";
 const noNotificationsMsg = "*[data-test='empty-list-header']";
@@ -17,6 +18,10 @@ class NotificationsPage extends Page {
 
     async getNoNotificationsMsg() {
         return await super.getElement(noNotificationsMsg);
+    }
+
+    async waitForNotificationList() {
+        await super.waitForDisplayed(notificationsList);
     }
 
     async clickDismissRndNotification() {

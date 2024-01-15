@@ -46,7 +46,7 @@ describe('Request transaction operations check', async () => {
         receiverBalanceBefore = await sideMenu.getBalance();
 
         await navBarPage.goToMineTab();
-        await loginPage.pause(100);
+        await transactionsPage.waitForTransactionsList();
         await transactionsPage.clickLastTransaction();
 
         await transactionDetailPage.clickAcceptBtn();
@@ -68,7 +68,7 @@ describe('Request transaction operations check', async () => {
         receiverBalanceBefore = await sideMenu.getBalance();
 
         await navBarPage.goToMineTab();
-        await loginPage.pause(100);
+        await transactionsPage.waitForTransactionsList();
         await transactionsPage.clickLastTransaction();
 
         await transactionDetailPage.clickRejectBtn();

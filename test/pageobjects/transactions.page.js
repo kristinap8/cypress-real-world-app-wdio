@@ -1,6 +1,7 @@
 import Page from './page.js';
 import { generateRandomNumber } from '../helper/generator.js';
 
+const transactionsList = "*[data-test='transaction-list']";
 const transactions = "*[data-test*='transaction-item']";
 const transactionAmounts = "*[data-test*='transaction-amount']";
 const amountFilterDropdown = "*[data-test='transaction-list-filter-amount-range-button']";
@@ -10,6 +11,10 @@ const amountFilterSliderMax = "*[data-test='transaction-list-filter-amount-range
 const amountRangeText = "*[data-test='transaction-list-filter-amount-range-text']";
 
 class TransactionsPage extends Page {
+
+    async waitForTransactionsList() {
+        await super.waitForDisplayed(transactionsList);
+    }
 
     async getAmountRange() {
         return (await super.getElementText(amountRangeText)).replace(/[^\d$]/g, "").split('$').filter(Boolean).map(Number);

@@ -76,6 +76,10 @@ class Page {
     async reloadPage() {
         await browser.refresh();
     }
+
+    async waitForDisplayed(selector) {
+        await (await this.getElement(selector)).waitForDisplayed();
+    }
 }
 
 export default Page;
