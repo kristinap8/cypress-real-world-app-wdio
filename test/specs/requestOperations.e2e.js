@@ -26,6 +26,7 @@ describe('Request transaction operations check', async () => {
         senderBalanceBefore = await sideMenu.getBalance();
         await navBarPage.clickNewTransactionBtn();
 
+        await selectContactPage.waitForContactItems();
         contactFullName = await selectContactPage.getContactFullName(contactInd);
         contactUsername = await selectContactPage.getContactUsername(contactInd);
         await selectContactPage.clickContactItem(contactInd);
