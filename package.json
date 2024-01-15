@@ -36,7 +36,9 @@
     "clear:edge": "rm -r reports/allure-reports/edge || true",
     "wdio:spec:chrome": "cross-env ENV='dev' wdio run ./config/wdio.config.chrome.headless.js --reporters spec --spec",
     "wdio:spec:firefox": "cross-env ENV='dev' wdio ./config/wdio.config.firefox.headless.js --reporters spec --spec ",
-    "wdio:spec:edge": "cross-env ENV='dev' wdio ./config/wdio.config.edge.headless.js --reporters spec --spec"
+    "wdio:spec:edge": "cross-env ENV='dev' wdio ./config/wdio.config.edge.headless.js --reporters spec --spec",
+    "wdio:docker":  "cross-env ENV='dev' wdio run ./config/wdio.config.docker.js",
+    "report:docker": "npx allure generate allure-results --clean"
   },
   "keywords": [
     "wdio",
