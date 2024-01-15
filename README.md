@@ -7,6 +7,7 @@
 3. [Steps to Install](#steps-to-install)
 4. [Steps to Launch](#steps-to-launch)
 5. [Create a Report](#create-a-report)
+6. [Docker](#docker)
 
 ## Summary of Repo
 
@@ -112,4 +113,40 @@ npm run report:open:<name-of-a-browser>
 
 ```bash
 npm run wdio:e2e:run:<name-of-a-browser>
+```
+
+## Docker
+
+This project provides the ability to run automated tests and generate Allure reports using Docker (implemented for Chrome browser).
+
+1. Build docker images:
+
+```bash
+docker-compose build
+```
+
+2. Run the Cypress Real World App on localhost:3000 in the background:
+
+```bash
+docker-compose up -d run-app
+```
+
+3. Execute the following command to run the automated tests:
+
+```bash
+docker-compose up run-tests 
+```
+
+4. To generate the Allure report, use the following command:
+
+```bash
+docker-compose up -d allure
+```
+
+The Allure report will be available at http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html.
+
+5. To stop the running Docker containers:
+
+```bash
+docker-compose down
 ```
